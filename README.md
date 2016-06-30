@@ -29,7 +29,22 @@ Run ```train.py``` with the additional flags:
 
 ## Results
 
-![After 5 minutes](https://github.com/jhayes14/GAN/blob/master/Epoch_13_example.jpg) ![After 1 hour](https://github.com/jhayes14/GAN/blob/master/7.jpg)
+Here are some quick and dirty results after training on ~400 images of faces. Experiments were performed MacBook Air 1.4GHz Intel Core i5.
+
+![After 0 minutes](https://github.com/jhayes14/GAN/blob/master/TEST.jpg)   
+
+Initial noise produce by an untrained Generator.
+
+
+![After 5 minutes](https://github.com/jhayes14/GAN/blob/master/Epoch_13_example.jpg)   
+
+After training for 5-10 minutes.
+
+![After 1 hour](https://github.com/jhayes14/GAN/blob/master/7.jpg)
+
+After training for 45-60 minutes.
+
+
 
 ## Experiences
 
