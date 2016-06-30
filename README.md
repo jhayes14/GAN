@@ -27,6 +27,9 @@ Run ```train.py``` with the additional flags:
 - ```--TYPE str``` "train" (for training) or "generate" (for when training is done and you want to create pretty pictures).
 - ```--img_num int``` Used for number of images you want to generate when ```TYPE``` is "generate".
 
+## Results
+
+![After 5 minutes](https://github.com/jhayes14/GAN/blob/master/Epoch_13_example.jpg) ![After 1 hour](https://github.com/jhayes14/GAN/blob/master/7.jpg)
 
 ## Experiences
 
