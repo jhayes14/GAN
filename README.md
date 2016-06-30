@@ -3,16 +3,19 @@ Generate images via a Generative Adversarial Network (GAN)
 
 ## What is a GAN?
 
-A GAN is method for discovering the underlying distribution of a dataset, that is, it is a method in the domain of unsupervised representation learning. Most commonly it is applied to image generation tasks. 
+A GAN is a method for discovering and subsequently artificially generating the underlying distribution of a dataset; a method in the area of unsupervised representation learning. Most commonly it is applied to image generation tasks. 
 
-A GAN combines two Neural Networks, called a Discriminator and a Generator. Given some dataset, the Generator takes as input random noise, and attempts to produce something that resembles an item within the dataset. The discriminator takes as input both the real dataset and the artifical data produced by the Generator, and attempts to distinuish between the two. Both are trained in tandem. 
+A GAN combines two neural networks, called a Discriminator (D) and a Generator (G). Given a dataset, G takes as input random noise, and tries to produce something that resembles an item within the dataset. D takes as input both items within the real dataset and the artifical data produced by G, and tries to distinuish between the two. G and D are trained jointly. The important point is that G and D need to balance one another, neither can become too strong at their task with respect to the other. If G becomes very good at fooling D, this is usually because G has found a weakness in D's classification process which is not aligned with important features within the distribution. If D can easily tell artificial images from real ones, updating G's weights towards the right direction is a very very slow process, essentially G will not be able to learn from this process. 
 
 ## How does this GAN work?
 
-I heavily borrowed from a number of other implementations [ [1](https://github.com/jacobgil/keras-dcgan) [2](https://github.com/skaae/torch-gan) [3](https://github.com/aleju/cat-generator) ]. However, with the other implementations I could not produce (vaguely decent) images on a single CPU in a short time frame, so I took a new approach for training the Genereator (G) and Discriminator (D). Both G and D are DCNNs (deep convolutional neural networks), Batch Normalization is used for G but not for D, as in previous experiments [4](http://torch.ch/blog/2015/11/13/gan.html), I found Batch Normalization in D made D far too good at distinguishing artifical images from real images.
+I heavily borrowed from a number of other implementations [ [1](https://github.com/jacobgil/keras-dcgan) [2](https://github.com/skaae/torch-gan) [3](https://github.com/aleju/cat-generator) ]. However, with the other implementations I could not produce (decent) images on a single CPU in a short time frame, so I took a new approach to jointly train G and D, guaranteeing neither becomes too strong with respect to the other. Both G and D are DCNNs (deep convolutional neural networks), Batch Normalization is used for G but not for D, as in previous experiments [4](http://torch.ch/blog/2015/11/13/gan.html), I found Batch Normalization in D made D far too good at distinguishing artifical images from real images.
 
-To ensure that neither G nor D become to good at their respective jobs, I first defined a margin of error (e) such that:
-|training loss of G - training loss of D| < e , for each training batch. The exact implementation results in the lesser of the training of loss of G and D swapping at each successive training batch, resulting in neither becoming too powerful.
+To ensure that neither G nor D become to good at their respective tasks, I first defined a margin of error, *e*, such that:
+
+|(training loss of G) - (training loss of D)| < *e* , for each training batch.
+
+The exact implementation results in the lesser of the training of loss of G and D swapping at each successive training batch, resulting in neither becoming too powerful.
 
 Training GANs is extremely tough, a lot of care has to be paid to the learning rate parameter (as well as other parameters), and takes a long time to get right.
 
