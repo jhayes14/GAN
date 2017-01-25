@@ -1,6 +1,8 @@
 # GAN
 Generate images via a Generative Adversarial Network (GAN)
 
+Disclaimer: This was purely a learning exercise. I would not recommend using this over established results like DCGAN, additionally the training mechanisms used here have been advised against by DL experts.
+
 ## What is a GAN?
 
 A GAN is a method for discovering and subsequently artificially generating the underlying distribution of a dataset; a method in the area of unsupervised representation learning. Most commonly it is applied to image generation tasks. 
